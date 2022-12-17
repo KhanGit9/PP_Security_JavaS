@@ -26,14 +26,14 @@ public class AdminController {
     public String showUsers(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
-        return "/admin";
+        return "/admin/admin";
     }
 
     @GetMapping("/{id}/update")
     public String getUpdate(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.get(id));
         model.addAttribute("roles", roleSevice.getRoles());
-        return "/update";
+        return "/admin/update";
     }
 
     @PatchMapping("/{id}")

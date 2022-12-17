@@ -35,7 +35,7 @@ public class AllSeeController {
 	@PostMapping(value = "/user")
 	public String saveNewUser(@ModelAttribute("user") User user) {
 		userService.add(user);
-		return "/user";
+		return "user/user";
 	}
 
 }
