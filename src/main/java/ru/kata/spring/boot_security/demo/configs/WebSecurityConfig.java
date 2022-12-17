@@ -41,14 +41,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/admin", "/update", "/user").hasRole("ADMIN")
-                .antMatchers("/login", "/error", "/add", "/user").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().successHandler(successUserHandler)
+                .antMatchers("/admin/admin", "/admin/update").hasRole("ADMIN")
+                .antMatchers("/login", "/error", "/add", "/user/user").permitAll()
                 .and()
                 .formLogin().loginPage("/login")
-                .loginProcessingUrl("/process_login")
+                .loginProcessingUrl("/process_login").successHandler(successUserHandler)
                 .failureUrl("/login?error")
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/login")
