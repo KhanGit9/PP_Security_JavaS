@@ -5,6 +5,4 @@ import org.springframework.stereotype.Repository;
 import ru.kata.spring.boot_security.demo.model.Role;
 
 @Repository
-public interface RoleReposytory extends JpaRepository<Role, Integer> {
-
-}
+public interface RoleReposytory extends JpaRepository<Role, Integer> {}
