@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.service;
 
 
+import org.springframework.data.jdbc.repository.query.Query;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 

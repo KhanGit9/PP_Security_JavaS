@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html lang="en" >
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -21,21 +22,21 @@
         <td><h3 th:text="${us.getAge()}"></h3></td>
         <td><h3 th:text="${us.getName()}"></h3></td>
         <td><h3 th:text="${us.getRoles()}"></h3></td>
-        <td><a th:href="@{admin/{id}/update(id=${us.getId()})}"><input type="submit" value="Update"></a></td>
-        <td><form th:method="DELETE" th:action="@{/admin/{id}(id=${us.getId()})}"><input type="submit" value="Delete"></form></td>
+        <td><a th:href="@{admin/{id}/update(id=${us.getId()})}"><input type="submit" value="Обновить"></a></td>
+        <td><form th:method="DELETE" th:action="@{/admin/{id}(id=${us.getId()})}"><input type="submit" value="Удалить"></form></td>
     </tr>
     </th:block>
 </table>
 
 <br>
-<input type="button" value="Registration" align="center"
+<input type="button" value="Регистрация" align="center"
 onclick="window.location.href = '/add'" />
 
 <br>
-<input type="button" value="User Page" align="center"
+<input type="button" value="Страница пользователя" align="center"
        onclick="window.location.href = '/user/user'" />
 <br>
-<input type="button" value="Exit" align="center"
+<input type="button" value="Выход" align="center"
        onclick="window.location.href = '/logout'" />
 
 </body>

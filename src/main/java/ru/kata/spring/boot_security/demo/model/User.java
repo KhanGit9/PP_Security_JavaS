@@ -11,7 +11,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.*;
 import java.util.stream.Collectors;
-
+@NamedEntityGraph(
+        name = "User.roles",
+        attributeNodes = @NamedAttributeNode("roles"))
 @Entity
 @Table(name = "User")
 public class User implements UserDetails {
@@ -25,20 +27,20 @@ public class User implements UserDetails {
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles = new ArrayList<>();
+    private Set<Role> roles = new HashSet<>();
 
-    public User(String name, int age, String password, List <Role> roles) {
+    public User(String name, int age, String password, Set <Role> roles) {
         this.name = name;
         this.age = age;
         this.password = password;
         this.roles = roles;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
