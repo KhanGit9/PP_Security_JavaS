@@ -2,6 +2,7 @@ package ru.kata.spring.boot_security.demo.service;
 
 
 import org.springframework.data.jdbc.repository.query.Query;
+import org.springframework.security.core.userdetails.UserDetails;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 
@@ -15,4 +16,5 @@ public interface UserService {
     void update(int id, User user);
     List<User> getAllUsers();
     public User get(int id);
+    public UserDetails loadUserByUsername(String username);
 }

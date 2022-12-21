@@ -40,8 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/user").hasAnyRole("ADMIN", "USER")
                 .anyRequest().permitAll()
                 .and()
-                .formLogin().loginPage("/login")
-                .loginProcessingUrl("/process_login").successHandler(successUserHandler)
+                .formLogin().successHandler(successUserHandler)
                 .failureUrl("/login?error")
                 .and()
                 .logout().logoutSuccessUrl("/");

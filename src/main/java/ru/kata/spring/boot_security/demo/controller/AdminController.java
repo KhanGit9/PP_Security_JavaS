@@ -1,14 +1,13 @@
 package ru.kata.spring.boot_security.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleSevice;
 import ru.kata.spring.boot_security.demo.service.UserService;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -23,25 +22,21 @@ public class AdminController {
     }
 
     @GetMapping
-    public String showUsers(Model model) {
+    public String showUsers(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("oneUser", userService.loadUserByUsername(user.getUsername()));
+        model.addAttribute("roles", roleSevice.getRoles());
+        model.addAttribute("newUser", new User());
         return "/admin/admin";
     }
 
-    @GetMapping("/{id}/update")
-    public String getUpdate(@PathVariable("id") int id, Model model) {
-        model.addAttribute("user", userService.get(id));
-        model.addAttribute("roles", roleSevice.getRoles());
-        return "/admin/update";
-    }
-
-    @PatchMapping("/{id}")
+    @PatchMapping("/update{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
         userService.update(id, user);
         return "redirect:/admin";
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable("id") int id) {
         userService.remove(id);
         return "redirect:/admin";

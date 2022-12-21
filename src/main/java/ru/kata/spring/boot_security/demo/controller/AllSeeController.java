@@ -24,22 +24,11 @@ public class AllSeeController {
 		this.userService = userService;
 	}
 
-	@GetMapping (value = "/login")
-	public String getLogin() {
-		return "login";
-	}
 
-	@GetMapping(value = "/add")
-	public String addUser (Model model) {
-		model.addAttribute("user", new User());
-		model.addAttribute("roles", roleSevice.getRoles());
-		return "/add";
-	}
-
-	@PostMapping(value = "/user")
-	public String saveNewUser(@ModelAttribute("user") User user) {
+	@PostMapping("/add")
+	public String add(@ModelAttribute("newUser") User user) {
 		userService.add(user);
-		return "redirect:/user/user";
+		return "redirect:/admin";
 	}
 
 	@GetMapping("/logout")

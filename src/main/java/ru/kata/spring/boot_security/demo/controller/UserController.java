@@ -21,8 +21,8 @@ UserService userService;
 
     @GetMapping ("/user")
     public String getUpdate(@AuthenticationPrincipal User user, Model model) {
-    model.addAttribute("user", user);
-    return "/user/user";
+    model.addAttribute("user", userService.loadUserByUsername(user.getName()));
+    return "user/user";
 }
 
 
