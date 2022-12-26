@@ -36,7 +36,8 @@ public class InitUsersAndRoles {
         roleService.save(user);
         roleService.save(admin);
 
-        Set<Role> roles = Set.of(user, admin);
+        Set<Role> rolesUser = Set.of(user);
+        Set<Role> roleAdmin = Set.of(admin);
 
         User user1 = new User("2@2", "2");
 
@@ -44,9 +45,9 @@ public class InitUsersAndRoles {
 
         User user3 = new User("ramz@mail.ru", "123");
 
-        user1.setRoles(roles);
-        user2.setRoles(roles);
-        user3.setRoles(roles);
+        user1.setRoles(rolesUser);
+        user2.setRoles(roleAdmin);
+        user3.setRoles(rolesUser);
 
         user3.setFirstName("Mit1ok");
         user3.setLastName("Usman");
